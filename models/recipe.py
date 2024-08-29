@@ -11,8 +11,8 @@ class Recipe(BaseModel, Base):
     __tablename__ = 'recipes'
     title = Column(String(128), nullable=False)
     content = Column(String(2048), nullable=False)
-
-
+    user_id = Column(String(60), ForeignKey('users.id'), nullable=False)
+    reviews = 
     def __init__(self, *args, **kwargs):
         """Constructor"""
         super().__init__(*args, **kwargs)
