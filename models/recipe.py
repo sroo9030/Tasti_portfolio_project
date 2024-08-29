@@ -4,6 +4,7 @@ recipe model
 """
 from models.base_model import BaseModel, Base
 from sqlalchemy import String, Column, ForeignKey
+from sqlalchemy.orm import relationship
 
 
 class Recipe(BaseModel, Base):
@@ -12,7 +13,8 @@ class Recipe(BaseModel, Base):
     title = Column(String(128), nullable=False)
     content = Column(String(2048), nullable=False)
     user_id = Column(String(60), ForeignKey('users.id'), nullable=False)
-    reviews = 
+    reviews = relationship('Review', backref='recipe')
+
     def __init__(self, *args, **kwargs):
         """Constructor"""
         super().__init__(*args, **kwargs)
