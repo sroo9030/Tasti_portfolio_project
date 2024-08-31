@@ -7,6 +7,7 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 from models.base_model import Base
 classes = {}
 
+
 class TheStorage:
     """Database storage class"""
     __engine = None
@@ -14,10 +15,10 @@ class TheStorage:
 
     def __init__(self):
         """Constructor"""
-        MYSQL_USER = 'tasti'
-        MYSQL_PWD = 'tasti'
+        MYSQL_USER = 'tasti_user'
+        MYSQL_PWD = 'tasti_pwd'
         MYSQL_HOST = '' #server to host in it
-        MYSQL_DB = 'db'
+        MYSQL_DB = 'tasti_db'
         # MYSQL_USER = getenv('MYSQL_USER')
         # MYSQL_PWD = getenv('MYSQL_PWD')
         # MYSQL_HOST = getenv('MYSQL_HOST')
