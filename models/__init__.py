@@ -15,5 +15,6 @@ db = SQLAlchemy(app)
 encrypter = Bcrypt()
 
 
+
 # we put it at the last because we don't need circular import again (routes need the app variable)
 from models import routes
