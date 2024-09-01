@@ -8,7 +8,7 @@ class Review(BaseModel, Base):
     __tablename__ = 'reviews'
     recipe_id = Column(String(60), ForeignKey('recipes.id'), nullable=False)
     user_id = Column(String(60), ForeignKey('users.id'), nullable=False)
-    number_of_stars = Column(Integer(5), nullable=False)
+    number_of_stars = Column(Integer(), nullable=False)
 
     def __init__(self, *args, **kwargs):
         """initializing"""
