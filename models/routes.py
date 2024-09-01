@@ -28,6 +28,7 @@ def register():
         db.session.commit()
         flash(f"sign up for {form.username.data} has done seccessfully you can now login", 'success')
         return redirect(url_for('login'))
+    flash(f"sorry {form.username.data} something went wrong !!", 'danger')
     return render_template('register.html', title=title, form=form)
 
 
