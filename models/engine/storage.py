@@ -5,7 +5,11 @@ database storage operations
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from models.base_model import Base
-classes = {}
+from models.user import User
+
+classes = {
+    'User': User
+}
 
 
 class TheStorage:
