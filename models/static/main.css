@@ -1,5 +1,5 @@
 body {
-    background: #D5C9A2; /* Updated */
+    background: #f0efee; /* Updated */
     color: #685C46; /* Updated */
     margin-top: 5rem;
   }
@@ -25,7 +25,7 @@ body {
   }
   
   .content-section {
-    background: #F46F2C; /* Updated */
+    background: #D5C9A2; /* Updated */
     padding: 10px 20px;
     border: 1px solid #685C46; /* Updated */
     border-radius: 3px;
