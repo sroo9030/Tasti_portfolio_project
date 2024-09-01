@@ -6,9 +6,13 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from models.base_model import Base
 from models.user import User
+from models.review import Review
+from models.recipe import Recipe
 
 classes = {
-    'User': User
+    'User': User,
+    'Review': Review,
+    'Recipe': Recipe
 }
 
 
