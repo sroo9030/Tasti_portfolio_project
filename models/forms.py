@@ -32,14 +32,17 @@ class RegistrationForm(FlaskForm):
         # print(username)
         user_exist = db.session.query(User).filter_by(username=username).first()
         if user_exist:
-            raise ValidationError("this username is already taken try another one.")
+            flash(f"this username is already taken try another one.", 'danger')
+            return False
         return True
 
     def validate_email(self, email):
         ''' validate that the email is unique'''
-        user_exist = db.session.query(User).filter_by(email=email).first()
-        if user_exist:
-            raise ValidationError("this email is already used try another one.")
+        email_exist = db.session.query(User).filter_by(email=email).first()
+        if email_exist:
+            flash(f"this email is already used try another one.", 'danger')
+            return False
+            #raise ValidationError("this email is already used try another one.")
         return True
         
 class loginForm(FlaskForm):
