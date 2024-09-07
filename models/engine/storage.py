@@ -72,12 +72,15 @@ class TheStorage:
         """call remove() method on the private session attribute"""
         self.__session.remove()
 
-    def get(self, cls, id):
+    def get(self, cls, id=None, username=None, email=None):
         """A method to retrieve one object"""
-        for obj in self.all(cls).values():
-            if obj.id == id:
+        for obj in self.all(cls).values():  # Assuming all(cls) returns a dict-like object
+            if (id is not None and getattr(obj, 'id', None) == id) or \
+            (username is not None and getattr(obj, 'username', None) == username) or \
+            (email is not None and getattr(obj, 'email', None) == email):
                 return obj
         return None
+
 
     def count(self, cls=None):
         """A method to count the number of objects in storage"""

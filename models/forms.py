@@ -6,65 +6,57 @@ module contain all the forms of the project
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
-from models import encrypter,db
-from flask import url_for,flash,redirect
+from models import encrypter, storage
 from models.user import User
+
 
 class RegistrationForm(FlaskForm):
     '''Registration form'''
 
     username = StringField("username", 
-                        validators=[DataRequired(), Length(min=4, max=20)])
+                           validators=[DataRequired(), Length(min=4, max=20)])
 
     email = StringField("email", 
-                        validators=[DataRequired(), Length(min=4, max=20), Email()])
-    
+                        validators=[DataRequired(), Length(min=8, max=50), Email()])
+
     password = PasswordField("enter your password", 
-                            validators=[DataRequired()])
-    
+                             validators=[DataRequired()])
+
     confirm_password = PasswordField("confirm your password",
-                            validators=[DataRequired(), EqualTo('password')])
+                                     validators=[DataRequired(), EqualTo('password')])
 
     submit = SubmitField("Sign up")
 
     def validate_username(self, username):
         ''' validate that the username is unique'''
-        # print(username)
-        user_exist = db.session.query(User).filter_by(username=username).first()
+        user_exist = storage.get(User, username=username.data)
         if user_exist:
-            flash(f"this username is already taken try another one.", 'danger')
-            return False
-        return True
-
+            raise ValidationError("This username is already taken. Please choose another one.")
+    
     def validate_email(self, email):
         ''' validate that the email is unique'''
-        email_exist = db.session.query(User).filter_by(email=email).first()
+        email_exist = storage.get(User, email=email.data)
         if email_exist:
-            flash(f"this email is already used try another one.", 'danger')
-            return False
-            #raise ValidationError("this email is already used try another one.")
-        return True
-        
+            raise ValidationError("This email is already registered. Please use another one.")
+
+
 class loginForm(FlaskForm):
-    '''Registration form'''
+    '''Login form'''
 
     email = StringField("email",
-                        validators=[DataRequired(), Length(min=4, max=20), Email()])
-    
+                        validators=[DataRequired(), Length(min=4, max=50), Email()])
+
     password = PasswordField("enter your password", 
-                            validators=[DataRequired()])
+                             validators=[DataRequired()])
 
     remember = BooleanField("Remember me")
     submit = SubmitField("LOG IN")
 
     def validate_correct_info(self):
         ''' check if the password is correct'''
-        user_exist = db.session.query(User).filter_by(email=self.email.data).first()
-        if user_exist and encrypter.check_password_hash(user_exist.password, self.password.data):
-            return True
-        else:
-            flash(f"your email or password isn't correct", 'danger')
-            return redirect(url_for('login'))
+        user_exist = storage.get(User, email=self.email.data)
+        if user_exist is None or not encrypter.check_password_hash(user_exist.password, self.password.data):
+            raise ValidationError("Your email or password is incorrect.")
 
 
 class RecipeForm(FlaskForm) :

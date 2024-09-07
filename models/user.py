@@ -1,12 +1,13 @@
 #!/usr/bin/python3
 """
-user model
+User model
 """
 from models.base_model import BaseModel, Base
 from sqlalchemy import String, Column
+from flask_login import UserMixin
 
 
-class User(BaseModel, Base):
+class User(BaseModel, Base, UserMixin):
     """User Class"""
     __tablename__ = 'users'
     username = Column(String(128), nullable=False)
