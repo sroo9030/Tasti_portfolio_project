@@ -17,6 +17,12 @@ def home():
     return render_template('main.html', title=title)
 
 
+@app.route('/post')
+def post():
+    title = "Post"
+    return render_template('main.html', title=title)
+
+
 @app.route("/register", methods=['GET', 'POST'])
 def register():
     '''Registration route'''
