@@ -22,7 +22,7 @@
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/yourusername/tasti.git
+   git clone https://github.com/sroo9030/Tasti_portfolio_project
    cd tasti
    ```
 
