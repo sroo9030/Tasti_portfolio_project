@@ -25,7 +25,7 @@ class TheStorage:
         """Constructor"""
         MYSQL_USER = 'tasti_user'
         MYSQL_PWD = 'tasti_pwd'
-        MYSQL_HOST = '' #server to host in it
+        MYSQL_HOST = 'localhost'
         MYSQL_DB = 'tasti_db'
         # MYSQL_USER = getenv('MYSQL_USER')
         # MYSQL_PWD = getenv('MYSQL_PWD')
