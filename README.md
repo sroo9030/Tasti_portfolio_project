@@ -23,14 +23,14 @@
 
    ```bash
    git clone https://github.com/sroo9030/Tasti_portfolio_project
-   cd tasti
+   cd Tasti_portfolio_project
    ```
 
 2. **Create a virtual environment:**
 
 ```
 python3 -m venv venv
-source venv/bin/activate # On Windows use: venv\Scripts\activate
+source venv/bin/activate
 ```
 
 3. **Install the dependencies:**
@@ -39,7 +39,7 @@ source venv/bin/activate # On Windows use: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-4. **SETUP The DataBase:**
+4. **Setup The Database:**
 
 - you need to setup the database first to run the program correctly
 
