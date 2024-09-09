@@ -1,0 +1,357 @@
+/* Basic reset for margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Navigation bar styling */
+nav.navbar {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between; /* Spreads out the content: links on left, auth on right */
+    padding: 15px;
+}
+
+/* Navigation Links (Left Side) */
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    padding: 10px;
+    transition: background 0.3s ease;
+}
+
+.nav-links li a:hover {
+    background-color: #ff5722;
+    border-radius: 5px;
+}
+
+/* Auth Links (Right Side) */
+.auth-links {
+    list-style: none;
+    display: flex;
+}
+
+.auth-links li {
+    margin-left: 15px; /* Adds space between "Sign In" and "Sign Up" */
+}
+
+.auth-links li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    transition: background 0.3s ease;
+    border-radius: 5px;
+}
+
+.auth-links li a.signin {
+    background-color: transparent; /* No background for sign in */
+}
+
+.auth-links li a.signup {
+    background-color: #ff5722; /* Highlighted background for sign up */
+}
+
+.auth-links li a:hover {
+    background-color: #e64a19; /* Darken color on hover */
+}
+
+
+
+/* Styling for the cover image */
+header.cover-image {
+    height: 100vh; /* Full height of the viewport */
+    background-image: url('cover_image.png'); /* Replace with your image */
+    background-size: cover; /* Ensures the image covers the entire area */
+    background-position: center; /* Centers the image */
+    background-attachment: fixed; /* Creates a parallax effect when scrolling (optional) */
+    position: relative;
+    display: flex;
+    align-items: center; /* Centers content vertically */
+    justify-content: center; /* Centers content horizontally */
+    color: white; /* Text color */
+    text-align: center;
+}
+
+/* Optional overlay for better text readability */
+header.cover-image .overlay {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+    padding: 50px;
+    border-radius: 10px;
+}
+
+/* Styles for the text and call-to-action button */
+header.cover-image h1 {
+    font-size: 4rem; /* Large heading */
+    margin-bottom: 10px;
+}
+
+header.cover-image p {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+/* Ensure space between cover image and next section */
+header.cover-image {
+    margin-bottom: 50px; /* Add margin below the cover image */
+}
+
+header.cover-image .cta-button {
+    padding: 10px 20px;
+    background-color: #ff5722;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+}
+
+header.cover-image .cta-button:hover {
+    background-color: #e64a19;
+}
+
+@media (max-width: 768px) {
+    header.cover-image h1 {
+        font-size: 3rem;
+    }
+
+    header.cover-image p {
+        font-size: 1.2rem;
+    }
+
+    header.cover-image .cta-button {
+        font-size: 1rem;
+    }
+}
+
+
+/* General Styling */
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f3f4f6;
+    color: #333;
+}
+/* Feature Section */
+#features {
+    padding: 80px 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+#features h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 60px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.feature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 50px;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.feature img {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    object-fit: cover;
+}
+
+.feature h3 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.feature p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.feature:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Feature section for larger screens */
+@media (min-width: 768px) {
+    .feature {
+        flex-direction: row;
+        text-align: left;
+        padding: 40px;
+    }
+
+    .feature img {
+        width: 40%;
+        height: auto;
+        margin-right: 30px;
+    }
+
+    .feature p {
+        padding: 0;
+    }
+}
+
+
+/* Additional for Header Matching */
+#features::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: 0;
+    right: 0;
+    height: 150px;
+    background-color: #007BFF;
+    z-index: 1;
+}
+
+h2 {
+    position: relative;
+    z-index: 2;
+}
+
+
+/* About Section Styling */
+#about {
+    padding: 80px 20px;
+    background-color: #fff;
+    text-align: center;
+    position: relative;
+}
+
+#about h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    position: relative;
+    z-index: 10;
+}
+
+#about p {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+#about h3 {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+/* Team Members Styling */
+.team-members {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 40px;
+}
+
+.team-member {
+    text-align: center;
+    background: linear-gradient(145deg, #f7f8fa, #e8ebed);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+    width: 30%;
+}
+
+.team-member:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+}
+
+.team-member h4 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.team-member .team-links {
+    list-style: none;
+    padding: 0;
+}
+
+.team-member .team-links li {
+    margin: 5px 0;
+}
+
+.team-member .team-links li a {
+    color: #007BFF;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.team-member .team-links li a:hover {
+    color: #ff5722;
+}
+
+/* GitHub Repo Link */
+#about .repo-link {
+    color: #ff5722;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.3rem;
+    border: 2px solid #ff5722;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#about .repo-link:hover {
+    background-color: #ff5722;
+    color: #fff;
+}
+
+/* Responsive Design for Team Section */
+@media (max-width: 768px) {
+    .team-members {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .team-member {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+}
