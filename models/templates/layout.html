@@ -43,11 +43,16 @@
                     <!-- the dropdown menu:-->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Account
+                            {% if current_user.is_authenticated %}
+                            {{ current_user.username }}
+                            {% else %}
+                                Account
+                            {% endif %}
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/profile">profile</a>
+                            
                             {% if current_user.is_authenticated %}
+                                <a class="dropdown-item" href="/profile">profile</a>
                                 <a class="dropdown-item" href="/logout">logout</a>
                             {% else %}
                             <a class="dropdown-item" href="/login">Login</a>
