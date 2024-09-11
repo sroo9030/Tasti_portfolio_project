@@ -35,7 +35,7 @@ class TheStorage:
                                       format(MYSQL_USER,
                                              MYSQL_PWD,
                                              MYSQL_HOST,
-                                             MYSQL_DB))
+                                             MYSQL_DB),pool_pre_ping=True)
 
     def all(self, cls=None):
         """query on the current database session"""
