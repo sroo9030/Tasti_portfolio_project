@@ -27,10 +27,6 @@ class TheStorage:
         MYSQL_PWD = 'tasti_pwd'
         MYSQL_HOST = 'localhost'
         MYSQL_DB = 'tasti_db'
-        # MYSQL_USER = getenv('MYSQL_USER')
-        # MYSQL_PWD = getenv('MYSQL_PWD')
-        # MYSQL_HOST = getenv('MYSQL_HOST')
-        # MYSQL_DB = getenv('MYSQL_DB')
         self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.
                                       format(MYSQL_USER,
                                              MYSQL_PWD,
