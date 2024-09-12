@@ -3,12 +3,14 @@
 Routes module
 '''
 
+import os
 from models import app, encrypter, storage
 from flask import render_template, url_for, flash, redirect
 from models.forms import RegistrationForm, loginForm, RecipeForm
 from models.user import User
 from models.recipe import Recipe
 from flask_login import login_user, logout_user, login_required, current_user
+from secrets import token_hex
 
 
 @app.route('/')
@@ -59,6 +61,19 @@ def logout():
     return redirect(url_for('login'))
 
 
+def save_picture(form_picture):
+    """
+    Function to save the picture in the static folder
+    """
+    file_code = token_hex(8)
+    _, file_ext = os.path.splitext(form_picture.filename)
+    picture_name = file_code + file_ext
+    picture_path = os.path.join(app.root_path, 'static/recipes', picture_name)
+    form_picture.save(picture_path)
+    return picture_name
+
+
+
 @app.route('/post/new', methods=['GET', 'POST'])
 def post():
     if not current_user.is_authenticated:
@@ -67,9 +82,13 @@ def post():
     title = "New recipe"
     form = RecipeForm()
     if form.validate_on_submit():
+        image = None
+        if form.picture.data:
+            image = save_picture(form.picture.data)
         recipe = Recipe(title=form.title.data,
                         content=form.content.data,
-                        user_id=current_user.id)
+                        user_id=current_user.id,
+                        image_name=image)
         storage.new(recipe)
         storage.save()
         flash('Your recipe has been created!', 'success')
