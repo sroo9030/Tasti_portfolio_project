@@ -5,21 +5,16 @@ Routes module
 
 from models import app, encrypter, storage
 from flask import render_template, url_for, flash, redirect
-from models.forms import RegistrationForm, loginForm
+from models.forms import RegistrationForm, loginForm, RecipeForm
 from models.user import User
-from flask_login import login_user, logout_user,login_required
+from models.recipe import Recipe
+from flask_login import login_user, logout_user, login_required, current_user
 
 
 @app.route('/')
 @app.route('/home')
 def home():
     title = "Home"
-    return render_template('main.html', title=title)
-
-
-@app.route('/post', methods=['GET', 'POST'])
-def post():
-    title = "Post"
     return render_template('main.html', title=title)
 
 
@@ -62,3 +57,17 @@ def login():
 def logout():
     logout_user()  # Use Flask-Login's logout_user function
     return redirect(url_for('login'))
+
+
+@app.route('/post/new', methods=['GET', 'POST'])
+@login_required
+def post():
+    title = "New recipe"
+    form = RecipeForm()
+    if form.validate_on_submit():
+        recipe = Recipe(title=form.title.data, content=form.content.data, user_id=current_user.id)
+        storage.new(recipe)
+        storage.save()
+        flash('Your recipe has been created!', 'success')
+        return redirect(url_for('home'))
+    return render_template('new_recipe.html', title='New recipe', form=form)
