@@ -60,12 +60,15 @@ def logout():
 
 
 @app.route('/post/new', methods=['GET', 'POST'])
-@login_required
 def post():
+    if not current_user.is_authenticated:
+        return redirect(url_for('login'))
     title = "New recipe"
     form = RecipeForm()
     if form.validate_on_submit():
-        recipe = Recipe(title=form.title.data, content=form.content.data, user_id=current_user.id)
+        recipe = Recipe(title=form.title.data,
+                        content=form.content.data,
+                        user_id=current_user.id)
         storage.new(recipe)
         storage.save()
         flash('Your recipe has been created!', 'success')
