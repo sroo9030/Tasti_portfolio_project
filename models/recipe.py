@@ -13,6 +13,7 @@ class Recipe(BaseModel, Base):
     title = Column(String(128), nullable=False)
     content = Column(String(2048), nullable=False)
     user_id = Column(String(60), ForeignKey('users.id'), nullable=False)
+    image_name = Column(String(60), nullable=True)
     reviews = relationship('Review', backref='recipe')
 
     def __init__(self, *args, **kwargs):
