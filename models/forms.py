@@ -4,6 +4,7 @@ module contain all the forms of the project
 '''
 
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileField, FileAllowed
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from models import encrypter, storage
@@ -63,4 +64,5 @@ class RecipeForm(FlaskForm) :
     '''adding a new recipe form'''
     title = StringField('Title', validators=[DataRequired(), Length(max=128)])
     content = TextAreaField('Content', validators=[DataRequired(), Length(max=2048)])
+    picture = FileField('Upload a picture', validators=[FileAllowed(['jpg', 'jpeg', 'png'])])
     submit = SubmitField('Submit')

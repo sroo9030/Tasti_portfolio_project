@@ -62,6 +62,7 @@ def logout():
 @app.route('/post/new', methods=['GET', 'POST'])
 def post():
     if not current_user.is_authenticated:
+        flash('You need to login first!', 'warning')
         return redirect(url_for('login'))
     title = "New recipe"
     form = RecipeForm()
