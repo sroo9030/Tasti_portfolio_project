@@ -29,7 +29,7 @@ def home():
     total_recipes = storage.count(cls=Recipe)
 
     return render_template('main.html', recipes=recipes, page=page, total_recipes=total_recipes,
-                           RECIPES_PER_PAGE=RECIPES_PER_PAGE)
+                           RECIPES_PER_PAGE=RECIPES_PER_PAGE, query=None)
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
@@ -46,7 +46,6 @@ def register():
         return redirect(url_for('login'))
     
     return render_template('register.html', title=title, form=form)
-
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
@@ -83,8 +82,6 @@ def save_picture(form_picture):
     form_picture.save(picture_path)
     return picture_name
 
-
-
 @app.route('/post/new', methods=['GET', 'POST'])
 def post():
     if not current_user.is_authenticated:
@@ -105,3 +102,17 @@ def post():
         flash('Your recipe has been created!', 'success')
         return redirect(url_for('home'))
     return render_template('new_recipe.html', title='New recipe', form=form)
+
+@app.route('/search', methods=['GET'])
+def search():
+    '''implement simple filtering algorithm for search bar'''
+    query = request.args.get('q', '')  # Get the search query from the 'q' parameter
+    if not query:
+        return home()
+    recipes = storage.all('Recipe')
+    # Filter recipes based on the search query:
+    filtered_recipes = {
+        key: recipe for key, recipe in recipes.items()
+        if query.lower() in recipe.title.lower() or query.lower() in recipe.content.lower()
+    }
+    return render_template('search_results.html', recipes=filtered_recipes, query=query)
