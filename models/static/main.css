@@ -155,3 +155,24 @@ a.article-title:hover {
   height: 25px;
   vertical-align: middle;
 }
+
+.recipe-detail {
+  max-width: 600px;      /* Limit the width of the container */
+  margin: 0 auto;        /* Center the content on the page */
+  padding: 20px;         /* Add padding for better spacing */
+}
+
+.recipe-detail p {
+  line-height: 1.6;      /* Increase line spacing for readability */
+  word-wrap: break-word; /* Ensure long words break correctly */
+  margin-bottom: 15px;   /* Space between each paragraph */
+}
+
+.recipe-detail p strong {
+  font-size: 1.1em;      /* Slightly increase the font size for section headers */
+}
+
+.recipe-detail p:last-child {
+  max-height: 200px;     /* Set a max height for instructions */
+  overflow-y: auto;      /* Add scroll for long instructions */
+}

@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ url_for('home') }}">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ recipe.title }}</li>
+        </ol>
+    </nav>
+
+
+    <div class="recipe-detail">
+        <h1>{{ recipe.title }}</h1>
+        <img src="{{ url_for('static', filename='recipes/' + (recipe.image_name or 'default.png')) }}" alt="Recipe Image">
+        <p><strong>Description:</strong> <br>{{ recipe.descripion }}</p>
+        <p><strong>ingradiantes:</strong> <br> {{ recipe.ingradiantes }}</p>
+        <p><strong>instructions: </strong> <br> {{ recipe.instructions }}</p>
+
+        <p><strong>Posted by:</strong> {{ user.username }}</p>
+
+        <!-- Back button to return to the main page -->
+        <a href="{{ url_for('home') }}" class="btn btn-primary">Back to Recipes</a>
+    </div>
+{% endblock %}

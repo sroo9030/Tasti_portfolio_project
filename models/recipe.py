@@ -11,7 +11,9 @@ class Recipe(BaseModel, Base):
     """User Class"""
     __tablename__ = 'recipes'
     title = Column(String(128), nullable=False)
-    content = Column(String(2048), nullable=False)
+    descripion = Column(String(1024), nullable=False)
+    ingradiantes = Column(String(2048), nullable=False)
+    instructions = Column(String(2048), nullable=False)
     user_id = Column(String(60), ForeignKey('users.id'), nullable=False)
     image_name = Column(String(60), nullable=True)
     reviews = relationship('Review', backref='recipe')
@@ -22,8 +24,7 @@ class Recipe(BaseModel, Base):
 
     @property
     def image_url(self):
-        """get the  recipe image name"""
+        """Generate the full URL for the recipe image"""
         if self.image_name:
             return self.image_name
-        # to avoid erorr we return a default img name if not provided
         return 'default.png'

@@ -16,7 +16,7 @@ from secrets import token_hex
 @app.route('/')
 @app.route('/home')
 def home():
-    RECIPES_PER_PAGE = 15
+    RECIPES_PER_PAGE = 5
     # Get the current page number from the query parameter, default to 1
     page = request.args.get('page', 1, type=int)
 
@@ -94,8 +94,10 @@ def post():
         if form.picture.data:
             image = save_picture(form.picture.data)
         recipe = Recipe(title=form.title.data,
-                        content=form.content.data,
-                        user_id=current_user.id,
+                        descripion=form.descripion.data,
+                        ingradiantes=form.ingradiantes.data,
+                        instructions=form.instructions.data,
+                        user_id=current_user.id,    # save the id of the user that created the recipe.
                         image_name=image)
         storage.new(recipe)
         storage.save()
@@ -113,6 +115,20 @@ def search():
     # Filter recipes based on the search query:
     filtered_recipes = {
         key: recipe for key, recipe in recipes.items()
-        if query.lower() in recipe.title.lower() or query.lower() in recipe.content.lower()
+        if query.lower() in recipe.title.lower() or query.lower() in recipe.descripion.lower()
+        or query.lower() in recipe.ingradiantes.lower()
     }
     return render_template('search_results.html', recipes=filtered_recipes, query=query)
+
+
+@app.route('/recipe/<string:recipe_id>')
+def show_recipe(recipe_id):
+    # Fetch the recipe by ID
+    recipe = storage.get(cls=Recipe, id=recipe_id)
+    user = storage.get(cls=User, id=recipe.user_id)
+    # If the recipe is not found, show a 404 error
+    if recipe is None:
+        return render_template('404.html'), 404
+
+    # Render the template for the single recipe page
+    return render_template('recipe_detail.html', recipe=recipe, user=user)

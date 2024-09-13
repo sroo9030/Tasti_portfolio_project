@@ -5,16 +5,15 @@
 
 <div class="recipe-list">
     {% if recipes %}
-        {% for key, recipe in recipes.items() %}
-            <div class="recipe-item">
-                <img src="{{ url_for('static', filename='recipes/' + recipe.image_url) }}" alt="Recipe Image">
-                <div class="recipe-details">
-                    <h2>{{ recipe.title }}</h2>
-                    <p class="description">{{ recipe.content }}</p>
-
-                </div>
-            </div>
-        {% endfor %}
+    {% for key, recipe in recipes.items() %}
+        <div class="recipe-item">
+            <!-- Recipe Image and content -->
+            <img src="{{ url_for('static', filename='recipes/' + recipe.image_url) }}" alt="Recipe Image">
+            <h2>{{ recipe.title }}</h2>
+            <h3>{{ recipe. descripion }}</h3>
+            <a href="{{ url_for('show_recipe', recipe_id=recipe.id) }}">view  recipe details</a>
+        </div>
+    {% endfor %}
     {% else %}
         <p>No recipes found for your search query.</p>
     {% endif %}

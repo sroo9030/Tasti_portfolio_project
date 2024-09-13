@@ -39,6 +39,12 @@
     color: #333;
 }
 
+.recipe-item h3 {
+    font-size: 1em;
+    margin: 16px;
+    color: #333;
+}
+
 .recipe-item p {
     margin: 0 16px 16px;
     color: #777;
