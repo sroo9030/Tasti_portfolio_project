@@ -33,16 +33,24 @@ class TheStorage:
                                              MYSQL_HOST,
                                              MYSQL_DB),pool_pre_ping=True)
 
-    def all(self, cls=None):
-        """query on the current database session"""
+    def all(self, cls=None, offset=None, limit=None):
+        """Query on the current database session with optional pagination"""
         new_dict = {}
         for clss in classes:
             if cls is None or cls is classes[clss] or cls is clss:
-                objs = self.__session.query(classes[clss]).all()
+                query = self.__session.query(classes[clss])
+                
+                # Apply offset and limit for pagination if provided to the query obj:
+                if offset is not None:
+                    query = query.offset(offset)
+                if limit is not None:
+                    query = query.limit(limit)
+
+                objs = query.all()  # This is the method that actually executes the query and retrieves the results.
                 for obj in objs:
                     key = obj.__class__.__name__ + '.' + obj.id
                     new_dict[key] = obj
-        return (new_dict)
+        return new_dict
 
     def new(self, obj):
         """add the object to the current database session"""

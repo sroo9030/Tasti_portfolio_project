@@ -19,3 +19,11 @@ class Recipe(BaseModel, Base):
     def __init__(self, *args, **kwargs):
         """Constructor"""
         super().__init__(*args, **kwargs)
+
+    @property
+    def image_url(self):
+        """get the  recipe image name"""
+        if self.image_name:
+            return self.image_name
+        # to avoid erorr we return a default img name if not provided
+        return 'default.png'

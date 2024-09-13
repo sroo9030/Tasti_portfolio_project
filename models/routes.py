@@ -5,7 +5,7 @@ Routes module
 
 import os
 from models import app, encrypter, storage
-from flask import render_template, url_for, flash, redirect
+from flask import render_template, url_for, flash, redirect, request
 from models.forms import RegistrationForm, loginForm, RecipeForm
 from models.user import User
 from models.recipe import Recipe
@@ -16,9 +16,20 @@ from secrets import token_hex
 @app.route('/')
 @app.route('/home')
 def home():
-    title = "Home"
-    return render_template('main.html', title=title)
+    RECIPES_PER_PAGE = 15
+    # Get the current page number from the query parameter, default to 1
+    page = request.args.get('page', 1, type=int)
 
+    # the offset is the index on where we will start any query opration from our database
+    offset = (page - 1) * RECIPES_PER_PAGE
+
+    # Fetch recipes with pagination using the custom storage:
+    recipes = storage.all(cls=Recipe, offset=offset, limit=RECIPES_PER_PAGE)
+
+    total_recipes = storage.count(cls=Recipe)
+
+    return render_template('main.html', recipes=recipes, page=page, total_recipes=total_recipes,
+                           RECIPES_PER_PAGE=RECIPES_PER_PAGE)
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
