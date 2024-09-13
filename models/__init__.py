@@ -17,7 +17,7 @@ encrypter = Bcrypt(app)
 
 login_manager = LoginManager()
 login_manager.init_app(app)
-login_manager.login_view = "Login"
+login_manager.login_view = "login"
 
 # Move the login_manager decorator here to avoid circular import with models
 @login_manager.user_loader
