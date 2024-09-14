@@ -83,10 +83,8 @@ def save_picture(form_picture):
     return picture_name
 
 @app.route('/post/new', methods=['GET', 'POST'])
+@login_required
 def post():
-    if not current_user.is_authenticated:
-        flash('You need to login first!', 'warning')
-        return redirect(url_for('login'))
     title = "New recipe"
     form = RecipeForm()
     if form.validate_on_submit():
