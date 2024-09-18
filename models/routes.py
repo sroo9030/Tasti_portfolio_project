@@ -16,7 +16,7 @@ from secrets import token_hex
 @app.route('/')
 @app.route('/home')
 def home():
-    RECIPES_PER_PAGE = 5
+    RECIPES_PER_PAGE = 10
     # Get the current page number from the query parameter, default to 1
     page = request.args.get('page', 1, type=int)
 
@@ -44,7 +44,6 @@ def register():
         storage.save()
         flash(f"Sign up for {form.username.data} was successful! You can now log in.", 'success')
         return redirect(url_for('login'))
-    
     return render_template('register.html', title=title, form=form)
 
 @app.route("/login", methods=['GET', 'POST'])

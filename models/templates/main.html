@@ -8,7 +8,7 @@
             <!-- Recipe Image and content -->
             <img src="{{ url_for('static', filename='recipes/' + recipe.image_url) }}" alt="Recipe Image">
             <h2>{{ recipe.title }}</h2>
-            <h3>{{ recipe. descripion }}</h3>
+            <h3>{{ recipe.descripion }}</h3>
             <a href="{{ url_for('show_recipe', recipe_id=recipe.id) }}">view  recipe details</a>
         </div>
     {% endfor %}

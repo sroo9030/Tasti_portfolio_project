@@ -3,7 +3,7 @@
 recipe model
 """
 from models.base_model import BaseModel, Base
-from sqlalchemy import String, Column, ForeignKey
+from sqlalchemy import String, Column, ForeignKey,Text
 from sqlalchemy.orm import relationship
 
 
@@ -13,7 +13,7 @@ class Recipe(BaseModel, Base):
     title = Column(String(128), nullable=False)
     descripion = Column(String(1024), nullable=False)
     ingradiantes = Column(String(2048), nullable=False)
-    instructions = Column(String(2048), nullable=False)
+    instructions = Column(Text, nullable=False)
     user_id = Column(String(60), ForeignKey('users.id'), nullable=False)
     image_name = Column(String(60), nullable=True)
     reviews = relationship('Review', backref='recipe')

@@ -17,7 +17,11 @@
         <p><strong>ingradiantes:</strong> <br> {{ recipe.ingradiantes }}</p>
         <p><strong>instructions: </strong> <br> {{ recipe.instructions }}</p>
 
-        <p><strong>Posted by:</strong> {{ user.username }}</p>
+        {% if user %}
+            <p><strong>Posted by:</strong> {{ user.username }}</p>
+        {% else %}
+        <p><strong>Posted by:</strong> Tasti team</p>
+        {% endif %}
 
         <!-- Back button to return to the main page -->
         <a href="{{ url_for('home') }}" class="btn btn-primary">Back to Recipes</a>
