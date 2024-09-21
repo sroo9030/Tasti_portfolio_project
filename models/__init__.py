@@ -12,9 +12,13 @@ from models.user import User  # Import user here
 storage = TheStorage()
 storage.reload()
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'b54af37ce9b4df9c42b12577ad7fd3fe'
-encrypter = Bcrypt(app)
 
+# application configuration
+app.config['SECRET_KEY'] = 'b54af37ce9b4df9c42b12577ad7fd3fe'
+app.config['SESSION_COOKIE_SECURE'] = True  # this has to be true when we are using https to sucure cookies
+app.config['REMEMBER_COOKIE_SECURE'] = True # remember my functionality only applied over secure HTTPS connections.
+
+encrypter = Bcrypt(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login"
