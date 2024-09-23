@@ -63,8 +63,8 @@ class loginForm(FlaskForm):
 class RecipeForm(FlaskForm) :
     '''adding a new recipe form'''
     title = StringField('Title', validators=[DataRequired(), Length(max=128)])
-    descripion = TextAreaField(' descripion', validators=[DataRequired(), Length(max=2048)])
-    ingradiantes = TextAreaField('ingradiantes', validators=[DataRequired(), Length(max=2048)])
-    instructions = TextAreaField('instructions', validators=[DataRequired(), Length(max=2048)])
+    descripion = TextAreaField('Description', validators=[DataRequired(), Length(max=2048)])
+    ingradiantes = TextAreaField('Ingredients', validators=[DataRequired(), Length(max=2048)])
+    instructions = TextAreaField('Instructions', validators=[DataRequired(), Length(max=2048)])
     picture = FileField('Upload a picture', validators=[FileAllowed(['jpg', 'jpeg', 'png'])])
     submit = SubmitField('Submit')
