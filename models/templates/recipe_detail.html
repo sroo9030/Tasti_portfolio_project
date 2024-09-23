@@ -14,8 +14,8 @@
         <h1>{{ recipe.title }}</h1>
         <img src="{{ url_for('static', filename='recipes/' + (recipe.image_name or 'default.png')) }}" alt="Recipe Image">
         <p><strong>Description:</strong> <br>{{ recipe.descripion }}</p>
-        <p><strong>ingradiantes:</strong> <br> {{ recipe.ingradiantes }}</p>
-        <p><strong>instructions: </strong> <br> {{ recipe.instructions }}</p>
+        <p><strong>Ingredients:</strong> <br> {{ recipe.ingradiantes }}</p>
+        <p><strong>Instructions: </strong> <br> {{ recipe.instructions }}</p>
 
         {% if user %}
             <p><strong>Posted by:</strong> {{ user.username }}</p>
