@@ -6,3 +6,4 @@ GRANT ALL PRIVILEGES ON `tasti`.* TO 'tasti_user'@'localhost';
 GRANT ALL PRIVILEGES ON tasti_db.* TO 'tasti_user'@'localhost';
 GRANT SELECT ON `performance_schema`.* TO 'tasti_user'@'localhost';
 FLUSH PRIVILEGES;
+
