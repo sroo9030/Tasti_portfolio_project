@@ -1,6 +1,6 @@
 # Tasti - Recipe Sharing Platform
 
-**Tasti** is a web application designed for food enthusiasts to share, explore, and comment on various recipes. Whether you're a home cook or a professional chef, Tasti offers a platform to share your unique culinary creations with others and discover new recipes from around the world.
+**Tasti** is a web application designed for food enthusiasts to share, explore, and comment on various recipes. Whether you're a home cook or a professional chef, Tasti offers a platform to share your unique culinary creations with others and discover new recipes from around the world. a life demo can be seen at: https://tasti.mobashir.tech/
 
 ## Features
 
